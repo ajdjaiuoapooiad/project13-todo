@@ -18,3 +18,8 @@ class CreateView(generic.CreateView):
 class DeleteView(generic.DeleteView):
     model=Post
     success_url=reverse_lazy('todo:index')
+    
+class UpdateView(generic.UpdateView):
+    model=Post
+    form_class=PostCreateForm
+    success_url=reverse_lazy('todo:index')
