@@ -1,0 +1,9 @@
+{% extends 'todo/base.html'%}
+
+{% block content%}
+<form action="" method="POST" enctype='multipart/form-data'>
+
+{% csrf_token%}
+<button type="submit" class="btn btn-dark">削除</button>
+</form>
+{% endblock%}

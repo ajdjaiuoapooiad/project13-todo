@@ -8,7 +8,7 @@
 <div class="alert alert-secondary" role="alert">
     <p>{{post.title}}</p>
     <a href="{% url 'todo:detail' post.pk%}" class="btn btn-primary">詳細</a>
-    <a href="" class="btn btn-success">削除</a>
+    <a href="{% url 'todo:delete' post.pk%}" class="btn btn-success">削除</a>
     <a href="" class="btn btn-info">いいね</a>
 </div>
 
