@@ -4,7 +4,7 @@ from django.views import generic
 from .forms import PostCreateForm
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 
 class IndexView(generic.ListView):
     model=Post
@@ -49,5 +49,9 @@ def loginview(request):
             else:
                 return redirect('todo:login')
     return render(request,'todo/login.html')
+
+def logoutview(request):
+    logout(request)
+    return redirect('todo:login')
             
     
