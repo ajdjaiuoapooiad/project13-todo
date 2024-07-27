@@ -5,9 +5,13 @@ from .forms import PostCreateForm
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class IndexView(generic.ListView):
+
+class IndexView(LoginRequiredMixin,generic.ListView):
     model=Post
+    login_url = 'todo:login'
     
 class DetailView(generic.DetailView):
     model=Post
@@ -26,6 +30,7 @@ class UpdateView(generic.UpdateView):
     form_class=PostCreateForm
     success_url=reverse_lazy('todo:index')
     
+
 def signupview(request):
     if request.method=='POST':
         username2=request.POST['username']
@@ -45,7 +50,7 @@ def loginview(request):
             user=authenticate(request,username=username2,password=password2)
             if user is not None:
                 login(request,user)
-                return redirect('todo:signup')
+                return redirect('todo:index')
             else:
                 return redirect('todo:login')
     return render(request,'todo/login.html')
