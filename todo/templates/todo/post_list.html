@@ -9,7 +9,7 @@
     <p>{{post.title}}</p>
     <a href="{% url 'todo:detail' post.pk%}" class="btn btn-primary">詳細</a>
     <a href="{% url 'todo:delete' post.pk%}" class="btn btn-success">削除</a>
-    <a href="" class="btn btn-info">いいね</a>
+    <a href="{% url 'todo:good' post.pk%}" class="btn btn-info">いいね　{{post.good}}</a>
 </div>
 
 {% endfor%}

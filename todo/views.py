@@ -58,5 +58,16 @@ def loginview(request):
 def logoutview(request):
     logout(request)
     return redirect('todo:login')
-            
+
+def goodview(request,pk):
+    post = Post.objects.get(pk=pk)
+    post2 = request.user.get_username()
+    if post2 in post.usertext:
+        return redirect('todo:index')
+    else:
+        post.good+= 1
+        post.usertext= post.usertext + ' ' + post2 #usertextにusernameとスペースを入れていく
+        post.save()
+        return redirect('todo:index')
+     
     
