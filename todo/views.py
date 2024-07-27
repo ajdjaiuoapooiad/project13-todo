@@ -69,5 +69,9 @@ def goodview(request,pk):
         post.usertext= post.usertext + ' ' + post2 #usertextにusernameとスペースを入れていく
         post.save()
         return redirect('todo:index')
-     
-    
+
+def readview(request,pk):
+    post = Post.objects.get(pk=pk)
+    post.read+= 1
+    post.save()
+    return redirect('todo:index')
